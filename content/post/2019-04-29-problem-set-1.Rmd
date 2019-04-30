@@ -1,0 +1,348 @@
+---
+title: 'Problem Set 1 '
+author: "Jiamin Lei"
+date: '2019-04-29'
+slug: problem-set-1
+tags: []
+categories:
+- ggplot
+- R
+- rmarkdown
+---
+
+## Life expectancy in 2007
+
+```{r load-packages, warning=FALSE, message=FALSE}
+
+library(tidyverse)  # This loads ggplot2, dplyr, and other packages you'll need
+
+library(gapminder)  # This loads the gapminder data
+```
+
+Let's first look at the first few rows of data:
+
+```{r view-data}
+head(gapminder)
+```
+
+Right now, the `gapminder` data frame contains rows for all years for all countries. We want to only look at 2007, so we create a new data frame that filters only rows for 2007.
+
+Note how there's a weird sequence of characters: `%>%`. This is called a *pipe* and lets you chain functions together. We could have also written this as `gapminder_2007 <- filter(gapminder, year == 2007)`.
+
+```{r filter-2007}
+gapminder_2007 <- gapminder %>%
+  filter(year == 2007)
+
+head(gapminder_2007)
+```
+
+Now we can plot a histogram of 2007 life expectancies with the default settings:
+
+```{r plot-2007-1}
+ggplot(data = gapminder_2007, 
+       mapping = aes(x = lifeExp)) +
+  geom_histogram(bins=40)
+```
+
+R will use 30 histogram bins by default, but that's not always appropriate, and it will yell at you for doing so. **Adjust the number of bins to 2, then 40, then 100.** **What's a good number for this data? Why?**
+
+A good number for the number of bins would be 40. Bin=2 would show us a lapse of around 30 years between each interval of life expectancy. This big lapse takes away a lot of the details we might want to see. For example, we might want to know how many people lived for around 20-25 years, not 20-50 years. Meanwhile, bin=100 breaks it down too much and might not be appropriate for a visualization. Therefore, bin=40 is the most appropriate.
+
+```{r plot-2007-2}
+ggplot(data = gapminder_2007, 
+       mapping = aes(x = lifeExp)) +
+  geom_histogram(bins = 2)
+```
+
+## Average life expectancy in 2007 by continent
+
+We're also interested in the differences of life expectancy across continents. First, we can group all rows by continent and calculate the mean
+
+This is where the `%>%` function is actually super useful. Remember that it lets you chain functions together—this means we can read these commands as a set of instructions: take the `gapminder` data frame, filter it, group it by continent, and summarize each group by calculating the mean. Without using the `%>%`, we could write this same chain like this: `summarize(group_by(filter(gapminder, year == 2007), continent), avg_life_exp = mean(lifeExp))`. But that's *awful* and impossible to read and full of parentheses that can easily be mismatched.
+
+```{r calc-mean}
+gapminder_cont_2007 <- gapminder %>%
+  filter(year == 2007) %>% 
+  group_by(continent) %>%
+  summarize(avg_life_exp = mean(lifeExp))
+
+head(gapminder_cont_2007)
+```
+
+Let's plot these averages as a bar chart:
+
+```{r plot-2007-bar}
+ggplot(data = gapminder_cont_2007, 
+       mapping = aes(x = continent, y = avg_life_exp, fill = continent)) + 
+  geom_col()
+```
+
+Then, let's plot them as density distributions. We don't need to use the summarized data frame for this, just the original filtered `gapminder_2007` data frame:
+
+```{r plot-2007-density}
+ggplot(data = gapminder_2007, 
+       mapping = aes(x = lifeExp, fill = continent)) + 
+  geom_density()
+```
+
+Now let's plot life expectancies as violin charts. These are the density distributions turned sideways:
+
+```{r plot-2007-violin}
+ggplot(data = gapminder_2007, 
+       mapping = aes(x = continent, y = lifeExp, fill = continent)) + 
+  geom_violin()
+```
+
+Finally, we can add actual points of data for each country to the violin chart:
+
+```{r plot-2007-violin-points}
+ggplot(data = gapminder_2007, 
+       mapping = aes(x = continent, y = lifeExp, fill = continent)) + 
+  geom_violin() +
+  geom_point()
+```
+
+The bar chart, density plot, violin plot, and violin plot + points each show different ways of looking at a single number—the average life expectancy in each continent. **Answer these questions:**
+
+- Which plot is most helpful? 
+
+The violin plot is the most helpful because it helps visualizing the big picture the best. A distribution of life expectancy in each continent definitely answers more questions and give us more information than a single-number average life expectancy. It also shows the level of density in life expectancy using the size of each continent plotted. In addition, the violin plot turns the density plot sideways so some data in certain continents is not covered by others.
+
+- Which ones show variability? 
+
+The density and violin plots both show variability. While the bart chart shoWs only the average life expectancy in each continent, the density and violin plots show us the distribution of life expectancy in each continent. 
+
+- What's going on with Oceania? 
+
+In Oceania, the concentration of population living to around 80 years is extraordinarily high, it's safe to say everyone (based on the gapminder dataset) has a life expectancy of approximately 80 years.
+
+
+## R and ggplot
+
+```{r load-libraries-1, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+## 3.2.4
+
+**1: Run `ggplot(data = mpg)`. What do you see?**
+
+```{r blank-plot, fig.width=2, fig.height=2}
+ggplot(data = mpg)
+
+```
+
+I see an empty graph. The height and width of the graph are 2 inches.
+
+(Notice how I used `fig.width` and `fig.height` in the chunk options. You can click on the little gear icon in the far left of the chunk to change other options.)
+
+**2: How many rows are in `mpg`? How many columns?**
+
+```{r mpg-details}
+nrow(mpg)
+ncol(mpg)
+
+# Or
+dim(mpg)
+
+# Or
+mpg
+```
+
+mpg has 234 rows and 11 columns
+
+**3: What does the `drv` variable describe? Read the help for `?mpg` to find out.**
+
+?mpg
+Variable drv has 3 types of data. f stands front-wheel drive, r is rear wheel drive, and 4 stands for 4 wheel drive
+
+**4: Make a scatterplot of `hwy` vs `cyl`.**
+
+```{r hwy-cyl-scatterplot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = cyl, y = hwy))
+```
+
+**5: What happens if you make a scatterplot of `class` vs `drv`? Why is the plot not useful?**
+
+```{r class-drv-scatterplot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = class, y = drv))
+```
+
+There's no particular relationship between class and drive wheel because any type of car could be made into either front-wheel, rear wheel, or 4wd. So the scatterplot shows datapoints all over the place and doesn't give us much information.
+
+
+## 3.3.1
+```{r hwy-displ-scatterplot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+You can map color of the data to a variable inside aes(), but the actual colors will be automatically generated. For example, you can use different colors to represent the different types of cylinders inside aes(). To determine the actual color of the data points, you would have to assign 'color=blue' outside of aes() but still inside geom_point().
+
+## 3.5.1
+```{r class-drv-scatterplot-2}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(~cty)
+```
+
+1. Trying to facet on a continuous variable would look meaningless because it will break your continuous variable into many sub-sections and doesn't make a good visualization.
+
+
+```{r cly-drv-scatterplot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = drv, y = cyl)) +
+  facet_grid(drv ~ cyl)
+```
+
+2. an Empty cell means that there is no information/data given this particular grouping. In the plot above, it simply means that there are no records on car fuel economy given a specific category, such as cars with rear wheel drive and 4 cylinders.
+
+```{r hwy-displ-scatterplot-2}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+
+3. The plot above shows that it's faceted by rows (grouped by drv), but not by columns
+
+```{r hwy-displ-scatterplot-3}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+The plot above is faceted by columns according to the number of cylinders, but it's not faceted by rows.
+
+```{r class-scatterplot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+
+```
+
+
+```{r class-scatterplot-2}
+library(ggplot2)
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+4. An advantage of using facet, instead of aes() for color, is that we can clearly see where the data points lie for each class of cars in terms of miles/gallon vs. engine displacement. In addition, there's a limit to how many colors you can use in one plot before it starts looking messy and unpleasing, but you can facet a plot into many groups. A disadvantage is that it's harder to compare the statistics for each class with each other when they are separated by facet. In particular with a larger dataset, it's hard to distinguish in all the points are clustered in one plot (even if they're classified by colors), but it would be easier to see them in different sub-plots.
+
+
+
+?facet_wrap
+
+5. nrow is the number of rows in the plot, formed by the individual faceted sub-plots, while ncol is the number of columns in the plot. We can't manually determine the number of rows or columns for facet_grid() as we're making the facet with two variables so the number of rows/columns is automated.
+
+6. You should put variable with more unique levels in the columns because that would give more space to the x-axis and make the plot easier for viewing, since most screens are wider not longer.
+
+## 3.6.1
+1. line chart - geom_smooth()
+   boxplot - geom_boxplot()
+   histogram - geom_histogram()
+   area graph - geom_area()
+
+```{r hwy-displ}
+  ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE) 
+```
+
+2. There would be 3 lines and the shaded area along the lines would be removed 
+
+```{r hwy-displ-2}
+  ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point(show.legend = FALSE) + 
+  geom_smooth(se = FALSE, show.legend = FALSE) 
+```
+
+3. show.legend = FALSE removes the legend (you can choose whether from line graph or scatterplot or both in this case). It was applied in the book example as followed to show us that by default, adding an variable to color would show legend key to the line graph, so we can hide it by adding "show.legend=FALSE".
+
+```{r hwy-displ-3}
+ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, color = drv), show.legend=FALSE)
+```
+
+4. se argument in geom_smooth() removes the grayscale area around the line graphs 
+
+5. Following graphs would not look different because they both combine line and point graphs in one plot with displ in the x-axis and hwy in the y-axis.
+
+```{r hwy-displ-4}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth()
+
+ggplot() + 
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+
+6. 
+```{r example-1}
+ggplot(data=mpg, mapping = aes(x=displ, y=hwy)) + geom_point() + geom_smooth(se=FALSE)
+```
+
+```{r example-2}
+ggplot(data=mpg, mapping = aes(x=displ, y=hwy, group=drv)) + 
+  geom_point(show.legend = FALSE) + 
+  geom_smooth(show.legend = FALSE, se = FALSE)
+```
+
+```{r example-3}
+ggplot(data=mpg, mapping = aes(x=displ, y=hwy, color=drv)) + 
+  geom_point() +
+  geom_smooth(se=FALSE)
+```
+
+```{r example-4}
+ggplot(data=mpg, mapping = aes(x=displ, y = hwy)) +
+  geom_point(mapping = aes(color = drv)) +
+  geom_smooth(se=FALSE)
+```
+
+```{r example-5}
+ggplot(data=mpg, aes(x=displ, y=hwy, linetype = drv)) +
+  geom_point(mapping=aes(color=drv)) +
+  geom_smooth(se=FALSE)
+```
+```{r example-6}
+ggplot(data=mpg, aes(x=displ, y=hwy, color=drv)) +
+  geom_point()
+```
+
+## 3.8.1
+```{r hwy-cty-jitter}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point(position="jitter")
+```
+
+1. The original graph shows overlaps of observations because some of them are rounded to the highest integer. geom_jitter() can specify how much randomness you want to spread around that data
+
+
+2. The width and height parameters control the amount of jitter horizontally and vertically
+
+3. geom_jitter() allows more randomless spread around our data, while geom_count() uses the size of data points to tell us how much overlap occurred on that data point
+
+```{r hwy-cty-jitter-2}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_jitter()
+```
+
+```{r hwy-cty-count}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_count()
+```
+
+4. Default position value for boxplots is "dodge", which places same values next to each other. As shown below, adding position="dodge" doesn't change how the boxplots look
+
+```{r hwy-drv-boxplot}
+ggplot(data = mpg, aes(x=drv, y=hwy)) + geom_boxplot()
+```
+
+```{r hwy-drv-boxplot-2}
+ggplot(data = mpg, aes(x=drv, y=hwy, position="dodge")) + geom_boxplot()
+```
