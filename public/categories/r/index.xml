@@ -11,13 +11,13 @@
     
     
     <item>
-      <title>Problem Set 1 </title>
+      <title>Problem Set 1: Visual Basics I</title>
       <link>/post/problem-set-1/</link>
       <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/problem-set-1/</guid>
-      <description>Life expectancy in 2007library(tidyverse) # This loads ggplot2, dplyr, and other packages you&amp;#39;ll needlibrary(gapminder) # This loads the gapminder dataLet’s first look at the first few rows of data:
-head(gapminder)## # A tibble: 6 x 6## country continent year lifeExp pop gdpPercap## &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;## 1 Afghanistan Asia 1952 28.8 8425333 779.## 2 Afghanistan Asia 1957 30.3 9240934 821.</description>
+      <description>Life expectancy in 2007Let’s first look at the first few rows of data:
+## # A tibble: 6 x 6## country continent year lifeExp pop gdpPercap## &amp;lt;fct&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;## 1 Afghanistan Asia 1952 28.8 8425333 779.## 2 Afghanistan Asia 1957 30.3 9240934 821.## 3 Afghanistan Asia 1962 32.0 10267083 853.## 4 Afghanistan Asia 1967 34.0 11537966 836.## 5 Afghanistan Asia 1972 36.</description>
     </item>
     
   </channel>

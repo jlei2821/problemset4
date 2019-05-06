@@ -7,7 +7,7 @@
     
     <title>
       
-      Problem Set 1  - Embrace Your Duality
+      Problem Set 1: Visual Basics I - Embrace Your Duality
       
 		</title>
 
@@ -56,7 +56,7 @@
   <article class="post">
     <header class="post-header">
       
-      <h2 class="post-title">Problem Set 1 </h2>
+      <h2 class="post-title">Problem Set 1: Visual Basics I</h2>
       <section class="post-meta">
         <time class="post-date">2019-04-29</time>
       </section>
@@ -67,11 +67,7 @@
 
 <div id="life-expectancy-in-2007" class="section level2">
 <h2>Life expectancy in 2007</h2>
-<pre class="r"><code>library(tidyverse)  # This loads ggplot2, dplyr, and other packages you&#39;ll need
-
-library(gapminder)  # This loads the gapminder data</code></pre>
 <p>Let’s first look at the first few rows of data:</p>
-<pre class="r"><code>head(gapminder)</code></pre>
 <pre><code>## # A tibble: 6 x 6
 ##   country     continent  year lifeExp      pop gdpPercap
 ##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
@@ -83,10 +79,6 @@ library(gapminder)  # This loads the gapminder data</code></pre>
 ## 6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
 <p>Right now, the <code>gapminder</code> data frame contains rows for all years for all countries. We want to only look at 2007, so we create a new data frame that filters only rows for 2007.</p>
 <p>Note how there’s a weird sequence of characters: <code>%&gt;%</code>. This is called a <em>pipe</em> and lets you chain functions together. We could have also written this as <code>gapminder_2007 &lt;- filter(gapminder, year == 2007)</code>.</p>
-<pre class="r"><code>gapminder_2007 &lt;- gapminder %&gt;%
-  filter(year == 2007)
-
-head(gapminder_2007)</code></pre>
 <pre><code>## # A tibble: 6 x 6
 ##   country     continent  year lifeExp      pop gdpPercap
 ##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
@@ -97,27 +89,15 @@ head(gapminder_2007)</code></pre>
 ## 5 Argentina   Americas   2007    75.3 40301927    12779.
 ## 6 Australia   Oceania    2007    81.2 20434176    34435.</code></pre>
 <p>Now we can plot a histogram of 2007 life expectancies with the default settings:</p>
-<pre class="r"><code>ggplot(data = gapminder_2007, 
-       mapping = aes(x = lifeExp)) +
-  geom_histogram(bins=40)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-1-1.png" width="672" /></p>
 <p>R will use 30 histogram bins by default, but that’s not always appropriate, and it will yell at you for doing so. <strong>Adjust the number of bins to 2, then 40, then 100.</strong> <strong>What’s a good number for this data? Why?</strong></p>
 <p>A good number for the number of bins would be 40. Bin=2 would show us a lapse of around 30 years between each interval of life expectancy. This big lapse takes away a lot of the details we might want to see. For example, we might want to know how many people lived for around 20-25 years, not 20-50 years. Meanwhile, bin=100 breaks it down too much and might not be appropriate for a visualization. Therefore, bin=40 is the most appropriate.</p>
-<pre class="r"><code>ggplot(data = gapminder_2007, 
-       mapping = aes(x = lifeExp)) +
-  geom_histogram(bins = 2)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-2-1.png" width="672" /></p>
 </div>
 <div id="average-life-expectancy-in-2007-by-continent" class="section level2">
 <h2>Average life expectancy in 2007 by continent</h2>
 <p>We’re also interested in the differences of life expectancy across continents. First, we can group all rows by continent and calculate the mean</p>
 <p>This is where the <code>%&gt;%</code> function is actually super useful. Remember that it lets you chain functions together—this means we can read these commands as a set of instructions: take the <code>gapminder</code> data frame, filter it, group it by continent, and summarize each group by calculating the mean. Without using the <code>%&gt;%</code>, we could write this same chain like this: <code>summarize(group_by(filter(gapminder, year == 2007), continent), avg_life_exp = mean(lifeExp))</code>. But that’s <em>awful</em> and impossible to read and full of parentheses that can easily be mismatched.</p>
-<pre class="r"><code>gapminder_cont_2007 &lt;- gapminder %&gt;%
-  filter(year == 2007) %&gt;% 
-  group_by(continent) %&gt;%
-  summarize(avg_life_exp = mean(lifeExp))
-
-head(gapminder_cont_2007)</code></pre>
 <pre><code>## # A tibble: 5 x 2
 ##   continent avg_life_exp
 ##   &lt;fct&gt;            &lt;dbl&gt;
@@ -127,25 +107,12 @@ head(gapminder_cont_2007)</code></pre>
 ## 4 Europe            77.6
 ## 5 Oceania           80.7</code></pre>
 <p>Let’s plot these averages as a bar chart:</p>
-<pre class="r"><code>ggplot(data = gapminder_cont_2007, 
-       mapping = aes(x = continent, y = avg_life_exp, fill = continent)) + 
-  geom_col()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-bar-1.png" width="672" /></p>
 <p>Then, let’s plot them as density distributions. We don’t need to use the summarized data frame for this, just the original filtered <code>gapminder_2007</code> data frame:</p>
-<pre class="r"><code>ggplot(data = gapminder_2007, 
-       mapping = aes(x = lifeExp, fill = continent)) + 
-  geom_density()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-density-1.png" width="672" /></p>
 <p>Now let’s plot life expectancies as violin charts. These are the density distributions turned sideways:</p>
-<pre class="r"><code>ggplot(data = gapminder_2007, 
-       mapping = aes(x = continent, y = lifeExp, fill = continent)) + 
-  geom_violin()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-violin-1.png" width="672" /></p>
 <p>Finally, we can add actual points of data for each country to the violin chart:</p>
-<pre class="r"><code>ggplot(data = gapminder_2007, 
-       mapping = aes(x = continent, y = lifeExp, fill = continent)) + 
-  geom_violin() +
-  geom_point()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/plot-2007-violin-points-1.png" width="672" /></p>
 <p>The bar chart, density plot, violin plot, and violin plot + points each show different ways of looking at a single number—the average life expectancy in each continent. <strong>Answer these questions:</strong></p>
 <ul>
@@ -163,25 +130,17 @@ head(gapminder_cont_2007)</code></pre>
 </div>
 <div id="r-and-ggplot" class="section level2">
 <h2>R and ggplot</h2>
-<pre class="r"><code>library(tidyverse)</code></pre>
 </div>
 <div id="section" class="section level2">
 <h2>3.2.4</h2>
 <p><strong>1: Run <code>ggplot(data = mpg)</code>. What do you see?</strong></p>
-<pre class="r"><code>ggplot(data = mpg)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/blank-plot-1.png" width="192" /></p>
 <p>I see an empty graph. The height and width of the graph are 2 inches.</p>
 <p>(Notice how I used <code>fig.width</code> and <code>fig.height</code> in the chunk options. You can click on the little gear icon in the far left of the chunk to change other options.)</p>
 <p><strong>2: How many rows are in <code>mpg</code>? How many columns?</strong></p>
-<pre class="r"><code>nrow(mpg)</code></pre>
 <pre><code>## [1] 234</code></pre>
-<pre class="r"><code>ncol(mpg)</code></pre>
 <pre><code>## [1] 11</code></pre>
-<pre class="r"><code># Or
-dim(mpg)</code></pre>
 <pre><code>## [1] 234  11</code></pre>
-<pre class="r"><code># Or
-mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
 ##    manufacturer model displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
@@ -200,57 +159,33 @@ mpg</code></pre>
 <p><strong>3: What does the <code>drv</code> variable describe? Read the help for <code>?mpg</code> to find out.</strong></p>
 <p>?mpg Variable drv has 3 types of data. f stands front-wheel drive, r is rear wheel drive, and 4 stands for 4 wheel drive</p>
 <p><strong>4: Make a scatterplot of <code>hwy</code> vs <code>cyl</code>.</strong></p>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = cyl, y = hwy))</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-cyl-scatterplot-1.png" width="672" /></p>
 <p><strong>5: What happens if you make a scatterplot of <code>class</code> vs <code>drv</code>? Why is the plot not useful?</strong></p>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = class, y = drv))</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/class-drv-scatterplot-1.png" width="672" /></p>
 <p>There’s no particular relationship between class and drive wheel because any type of car could be made into either front-wheel, rear wheel, or 4wd. So the scatterplot shows datapoints all over the place and doesn’t give us much information.</p>
 </div>
 <div id="section-1" class="section level2">
 <h2>3.3.1</h2>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = &quot;blue&quot;))</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-scatterplot-1.png" width="672" /></p>
 <p>You can map color of the data to a variable inside aes(), but the actual colors will be automatically generated. For example, you can use different colors to represent the different types of cylinders inside aes(). To determine the actual color of the data points, you would have to assign ‘color=blue’ outside of aes() but still inside geom_point().</p>
 </div>
 <div id="section-2" class="section level2">
 <h2>3.5.1</h2>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) + 
-  facet_grid(~cty)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/class-drv-scatterplot-2-1.png" width="672" /></p>
 <ol style="list-style-type: decimal">
 <li>Trying to facet on a continuous variable would look meaningless because it will break your continuous variable into many sub-sections and doesn’t make a good visualization.</li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = drv, y = cyl)) +
-  facet_grid(drv ~ cyl)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/cly-drv-scatterplot-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>an Empty cell means that there is no information/data given this particular grouping. In the plot above, it simply means that there are no records on car fuel economy given a specific category, such as cars with rear wheel drive and 4 cylinders.</li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) +
-  facet_grid(drv ~ .)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-scatterplot-2-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>The plot above shows that it’s faceted by rows (grouped by drv), but not by columns</li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) +
-  facet_grid(. ~ cyl)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-scatterplot-3-1.png" width="672" /></p>
 <p>The plot above is faceted by columns according to the number of cylinders, but it’s not faceted by rows.</p>
-<pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) + 
-  facet_wrap(~ class, nrow = 2)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/class-scatterplot-1.png" width="672" /></p>
-<pre class="r"><code>library(ggplot2)
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/class-scatterplot-2-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>An advantage of using facet, instead of aes() for color, is that we can clearly see where the data points lie for each class of cars in terms of miles/gallon vs. engine displacement. In addition, there’s a limit to how many colors you can use in one plot before it starts looking messy and unpleasing, but you can facet a plot into many groups. A disadvantage is that it’s harder to compare the statistics for each class with each other when they are separated by facet. In particular with a larger dataset, it’s hard to distinguish in all the points are clustered in one plot (even if they’re classified by colors), but it would be easier to see them in different sub-plots.</li>
@@ -266,93 +201,54 @@ ggplot(data = mpg) +
 <ol style="list-style-type: decimal">
 <li>line chart - geom_smooth() boxplot - geom_boxplot() histogram - geom_histogram() area graph - geom_area()</li>
 </ol>
-<pre class="r"><code>  ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
-  geom_point() + 
-  geom_smooth(se = FALSE) </code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>There would be 3 lines and the shaded area along the lines would be removed</li>
 </ol>
-<pre class="r"><code>  ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
-  geom_point(show.legend = FALSE) + 
-  geom_smooth(se = FALSE, show.legend = FALSE) </code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-2-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>show.legend = FALSE removes the legend (you can choose whether from line graph or scatterplot or both in this case). It was applied in the book example as followed to show us that by default, adding an variable to color would show legend key to the line graph, so we can hide it by adding “show.legend=FALSE”.</li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_smooth(
-    mapping = aes(x = displ, y = hwy, color = drv), show.legend=FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-3-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>se argument in geom_smooth() removes the grayscale area around the line graphs</p></li>
 <li><p>Following graphs would not look different because they both combine line and point graphs in one plot with displ in the x-axis and hwy in the y-axis.</p></li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point() + 
-  geom_smooth()</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-4-1.png" width="672" /></p>
-<pre class="r"><code>ggplot() + 
-  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-displ-4-2.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li></li>
 </ol>
-<pre class="r"><code>ggplot(data=mpg, mapping = aes(x=displ, y=hwy)) + geom_point() + geom_smooth(se=FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-1-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data=mpg, mapping = aes(x=displ, y=hwy, group=drv)) + 
-  geom_point(show.legend = FALSE) + 
-  geom_smooth(show.legend = FALSE, se = FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-2-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data=mpg, mapping = aes(x=displ, y=hwy, color=drv)) + 
-  geom_point() +
-  geom_smooth(se=FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-3-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data=mpg, mapping = aes(x=displ, y = hwy)) +
-  geom_point(mapping = aes(color = drv)) +
-  geom_smooth(se=FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-4-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data=mpg, aes(x=displ, y=hwy, linetype = drv)) +
-  geom_point(mapping=aes(color=drv)) +
-  geom_smooth(se=FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-5-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data=mpg, aes(x=displ, y=hwy, color=drv)) +
-  geom_point()</code></pre>
-<p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-6-1.png" width="672" /></p>
+<p><img src="/post/2019-04-29-problem-set-1_files/figure-html/example-5-1.png" width="672" /> <img src="/post/2019-04-29-problem-set-1_files/figure-html/example-6-1.png" width="672" /></p>
 </div>
 <div id="section-4" class="section level2">
 <h2>3.8.1</h2>
-<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
-  geom_point(position=&quot;jitter&quot;)</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-cty-jitter-1.png" width="672" /></p>
 <ol style="list-style-type: decimal">
 <li><p>The original graph shows overlaps of observations because some of them are rounded to the highest integer. geom_jitter() can specify how much randomness you want to spread around that data</p></li>
 <li><p>The width and height parameters control the amount of jitter horizontally and vertically</p></li>
 <li><p>geom_jitter() allows more randomless spread around our data, while geom_count() uses the size of data points to tell us how much overlap occurred on that data point</p></li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
-  geom_jitter()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-cty-jitter-2-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
-  geom_count()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-cty-count-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Default position value for boxplots is “dodge”, which places same values next to each other. As shown below, adding position=“dodge” doesn’t change how the boxplots look</li>
 </ol>
-<pre class="r"><code>ggplot(data = mpg, aes(x=drv, y=hwy)) + geom_boxplot()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-drv-boxplot-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(data = mpg, aes(x=drv, y=hwy, position=&quot;dodge&quot;)) + geom_boxplot()</code></pre>
 <p><img src="/post/2019-04-29-problem-set-1_files/figure-html/hwy-drv-boxplot-2-1.png" width="672" /></p>
 </div>
 

@@ -1,5 +1,5 @@
 ---
-title: 'Problem Set 1 '
+title: 'Problem Set 1: Visual Basics I'
 author: "Jiamin Lei"
 date: '2019-04-29'
 slug: problem-set-1
@@ -9,6 +9,9 @@ categories:
 - R
 - rmarkdown
 ---
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 ## Life expectancy in 2007
 

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>
+      
+      Final Project - Embrace Your Duality
+      
+		</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    
+    <link href="https://fonts.loli.net/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/bigfoot/dist/bigfoot.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/bigfoot/dist/bigfoot-number.css" />
+    <script type="text/javascript">
+        $.bigfoot();
+    </script>
+    
+    
+</head>
+
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<h1 class="blog-title">
+			<a href="/">
+				
+           Embrace Your Duality
+				
+			</a>
+		</h1>
+		<h2 class="blog-description">Data Visualization Portfolio using R</h2>
+	</div>
+
+	<div class="nav">
+    
+		
+	</div>
+</header>
+
+        
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h2 class="post-title">Final Project</h2>
+      <section class="post-meta">
+        <time class="post-date">2019-05-06</time>
+      </section>
+    </header>
+    <section class="post-content">
+      
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="web-link-to-shiny-app-httpsbalavigneswaran-kuppusamy.shinyapps.ionetwork" class="section level3">
+<h3><strong>Web link to shiny App:</strong> [<a href="https://balavigneswaran-kuppusamy.shinyapps.io/network/" class="uri">https://balavigneswaran-kuppusamy.shinyapps.io/network/</a>]</h3>
+</div>
+<div id="introduction-domain-problem-characterization" class="section level2">
+<h2>1. Introduction: Domain Problem Characterization</h2>
+<p>A high school in <em>Marseille, France</em> has conducted an analysis on historical data studying the influence of different factors on academic performance. The study observes student behavior and rates each student’s peer connections on a scale of 1 to 10. Results show that receiving a high score on peer connections is highly correlated with not only academic excellence of the student while in school, but also superior development after graduation.</p>
+<p>In order to enhance frequent communication among the student body, the high school principal decides to employ data scientists to create an online social platform. The purpose of this platform is to create a convenient environment for students to quickly navigate through connections between fellow peers and identify ways of contact. A successful platform not only needs to be quickly accessible to students, but also encourages academic discussions among student groups.</p>
+<p>The proposed platform should provide easy options for students to explore the community, &amp; observe network strength and enable them to make contacts with the right students to enable greater level of connectivity &amp; communication among students.</p>
+</div>
+<div id="operation-data-type-abstraction-design" class="section level2">
+<h2>2. Operation &amp; Data Type Abstraction Design</h2>
+<div id="datasets" class="section level4">
+<h4>Datasets</h4>
+<p>The data scientist team compiled two datasets for the purpose of this project after a 5-day survey.</p>
+<ul>
+<li><strong>Contacts</strong> - entails contacts of the students of nine classes. Data records indicate the IDs of students having the contact and the duration of contact on a level of 1-4, with 1 being the shortest and 4 being the longest. A clip of dataset is copied below:</li>
+</ul>
+<pre><code>## Observations: 502
+## Variables: 3
+## $ from   &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1...
+## $ to     &lt;dbl&gt; 28, 106, 147, 177, 295, 407, 21, 48, 200, 211, 242, 480...
+## $ weight &lt;dbl&gt; 2, 1, 4, 1, 4, 2, 4, 4, 4, 3, 3, 3, 3, 3, 4, 4, 4, 2, 3...</code></pre>
+<ul>
+<li><strong>Metadata</strong> - contains student details like student ID, class ID, and gender.</li>
+</ul>
+<pre><code>## Observations: 329
+## Variables: 3
+## $ id     &lt;dbl&gt; 650, 498, 627, 857, 487, 28, 927, 72, 400, 945, 637, 44...
+## $ class  &lt;chr&gt; &quot;2BIO1&quot;, &quot;2BIO1&quot;, &quot;2BIO1&quot;, &quot;2BIO1&quot;, &quot;2BIO1&quot;, &quot;2BIO2&quot;, &quot;...
+## $ gender &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, ...</code></pre>
+<ul>
+<li><strong>Random User API</strong> - provides user profile information like name, gender, ssn, profile pictures, etc over open web API with configurable parameters. The response from the API is in JSON format.</li>
+</ul>
+<pre><code>##   gender                     email          phone           cell nat
+## 1 female jenny.pearson@example.com (048)-918-8277 (063)-352-5254  US
+## 2   male      joe.cruz@example.com (562)-384-2850 (218)-822-8366  US
+##   name.title name.first name.last         location.street location.city
+## 1       miss      jenny   pearson       3577 valwood pkwy      pasadena
+## 2         mr        joe      cruz 4020 stevens creek blvd         tyler
+##   location.state location.postcode location.coordinates.latitude
+## 1      louisiana             50151                      -54.0717
+## 2          idaho             66765                      -49.4752
+##   location.coordinates.longitude location.timezone.offset
+## 1                       107.7430                    +5:00
+## 2                        72.8470                    +5:30
+##                location.timezone.description
+## 1 Ekaterinburg, Islamabad, Karachi, Tashkent
+## 2        Bombay, Calcutta, Madras, New Delhi
+##                             login.uuid  login.username login.password
+## 1 7a1a5da5-7353-4061-a6a0-c601807df1cd angrypeacock489       passpass
+## 2 c0a65838-4876-413d-9fdb-b2082b6ce3aa    orangedog806           baby
+##   login.salt                        login.md5
+## 1   mxndAfiz b9197c5f3a0a1b7d10e9ff2b7483c4d3
+## 2   NycmLsBZ ea906527f653ee642c409281a6900b17
+##                                 login.sha1
+## 1 40a41c3d3878677d0f1eacdadc83c8914756c65b
+## 2 bb715b5f9d75c12ebf423fc1688a784b5539ef38
+##                                                       login.sha256
+## 1 2e6e7494c9d9df08323eca35149a21d133a8efc962252655db12db3341803a81
+## 2 fadb2ab657aa4c133b7166d2be4a72eb1bbb8c9c449a80a8b9c07144ef03a792
+##               dob.date dob.age      registered.date registered.age id.name
+## 1 1945-03-09T09:53:08Z      74 2003-08-18T15:46:36Z             15     SSN
+## 2 1979-04-15T09:29:21Z      40 2015-12-28T21:43:24Z              3     SSN
+##      id.value                                    picture.large
+## 1 312-85-9877 https://randomuser.me/api/portraits/women/49.jpg
+## 2 318-98-1229   https://randomuser.me/api/portraits/men/37.jpg
+##                                         picture.medium
+## 1 https://randomuser.me/api/portraits/med/women/49.jpg
+## 2   https://randomuser.me/api/portraits/med/men/37.jpg
+##                                        picture.thumbnail
+## 1 https://randomuser.me/api/portraits/thumb/women/49.jpg
+## 2   https://randomuser.me/api/portraits/thumb/men/37.jpg</code></pre>
+</div>
+<div id="data-preparation-steps-data-type-abstraction" class="section level4">
+<h4>Data Preparation Steps / Data Type Abstraction</h4>
+<p>The following data preparation steps were executed from the 3 datasets to produce the nodes &amp; edges needed for visual design.</p>
+<ul>
+<li>Random user profiles loaded from web API, &amp; converted from JSON format to a dataframe containing the variables of interest - e.g. name, gender, ssn (unique ID), profile picture, etc.</li>
+<li>Data from <em>Metadata</em> dataset augmented with details from random user profiles (random mappings made between student metadata &amp; user profiles). During the merge, care was taken such that students are matched with a user profile having the same gender. This data will be used as the <code>nodes</code>/<code>vertices</code> of the graph.</li>
+<li>Data from <em>Contacts</em> dataset used as <code>edges</code> of the graph. The contact strenth considered as weight of the edge.</li>
+<li>Graph built from the nodes &amp; edges data using the igraph library.</li>
+<li>igraph library provides various centrality measures for the network &amp; can easily identify other network characteristics such as distance, shortest path, neighbors, etc.</li>
+<li>Various centrality measures such as degree, centrality, closeness, betweenness, etc are calculated from the igraph.</li>
+<li>The absolute values of the centrality measures are not in any way effective or usable by the students directly. Those absolute values have been transformed into <em>Quartile</em> measures between 1 - 4, where 4 indicating a student being in the highest quartile of the measure, &amp; 1 the lowest.</li>
+<li>These quartile measures are stored in the nodes dataframe against each node, &amp; will be usable for multiple calculations to rank the students, etc.</li>
+</ul>
+</div>
+</div>
+<div id="section-3-visual-encoding-interaction-design" class="section level2">
+<h2>Section 3: Visual Encoding / Interaction Design</h2>
+<p>Students should be able to quickly navigate through peer networks displayed as graph / network map. Students will input into the application by logging into their profile, and a network map will be generated based on student information and strength of their relations indicated in the <em>contacts</em> data.</p>
+<div id="considerations-in-the-visual-encoding" class="section level4">
+<h4>Considerations in the Visual Encoding:</h4>
+<ul>
+<li>Network map constructed using vizNetwork library using the nodes &amp; edges, &amp; is created as a force-directed graph layout.</li>
+<li>Each node in the network map will display student profile picture (thumbnail size).</li>
+<li>All the nodes will be of the same size, except the currently ‘logged in’ user, which will be shown in bigger size.</li>
+<li>The node will also indicate the class student belongs to in the form of differentiating color bands encircling the profile pictures.</li>
+<li>The edge thickness will depend on the strength of their contact &amp; will be thicker if the contact is bidirectional.</li>
+<li>In a seperate panel (sidebar on the right), the student can see a detailed profiles information of him/herself, with the different centrality measures highlighted along with their quartile ranking in appropriate color.</li>
+<li>The student will also be able to view list of top 5 potential friend suggestions (calculated based on centrality measures). Only students within the 3rd and 4th quartiles of ALL centrality measures are selected, &amp; obtained in the descending order of centrality values. All the existing neighbors are excluded from this list &amp; the top 5 are picked to be displayed.</li>
+</ul>
+<p>The following color mapping has been used to highlight quartile rankings of centrality measures:</p>
+<table class="table table-striped" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:right;">
+Quartile
+</th>
+<th style="text-align:left;">
+Color
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;text-align: center">
+1
+</td>
+<td style="text-align:left;">
+Red
+</td>
+</tr>
+<tr>
+<td style="text-align:right;text-align: center">
+2
+</td>
+<td style="text-align:left;">
+Orange
+</td>
+</tr>
+<tr>
+<td style="text-align:right;text-align: center">
+3
+</td>
+<td style="text-align:left;">
+Blue
+</td>
+</tr>
+<tr>
+<td style="text-align:right;text-align: center">
+4
+</td>
+<td style="text-align:left;">
+Green
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="considerations-in-the-interaction-design" class="section level4">
+<h4>Considerations in the Interaction Design:</h4>
+<ul>
+<li>Each node, when hovered over by mouse, will display the larger profile picture of the student, name, class &amp; their student ID.</li>
+<li>User will be presented with a list of all users in the network &amp; be able to switch to different student profile (mimicking login by different user). This ‘Log-in as’ will serve as a way for admins to monitor student activities and interactions.</li>
+<li>User will be able to toggle the network view where the size of the nodes will be based on their <em>Degree centrality</em> measure.</li>
+<li>User will be able to click on a node in the graph &amp; view the detailed profile of the user &amp; their centrality measures.</li>
+<li>User will be able to view the <code>shortest path</code> between him/herself &amp; the selected node (in a text format). This specifies the easiest way to get to know that person, and who all can introduce the student to the party of interest.</li>
+<li>Based on the centrality measures of the selected user, the system will provide recommendations on whether the selected user can be considered for potential friendship.</li>
+</ul>
+<p>To plot the network map and incorporate all intended features, igraph package was used to optimize the visual presentation of the graph and generate insights within the network using centrality functions. Computations generated by centrality methods will be displayed on the sidebar under each individual profile. The following centrality measures are displayed as part of every student profile (self &amp; the selected node):</p>
+<table class="table table-striped" style="width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Measure
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Degree
+</td>
+<td style="text-align:left;">
+How many direct, ‘one hop’ connections each node has to other nodes within the network.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Eigen Centrality
+</td>
+<td style="text-align:left;">
+How well connected a node is, and how many links their connections have, and so on through the network.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Closeness
+</td>
+<td style="text-align:left;">
+Calculates shortest paths between all nodes, then assigns each node a score based on its sum of shortest paths. This helps to see the strength of relationship between an individual and others.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Betweenness
+</td>
+<td style="text-align:left;">
+Measures number of times a node lies on the shortest path between other nodes. Higher number indicates a person who is better connected in the high school circle.
+</td>
+</tr>
+</tbody>
+</table>
+<p>Since the network graph can be huge, some edges between nodes might be obscured due to overlapping nodes &amp; edges and it would be hard to determine the strength of relationship between two nodes. Centrality measurements provide additional insights on the quality of connections that may be hard to detect visually in a network graph.</p>
+</div>
+</div>
+<div id="section-4-algorithmic-design" class="section level2">
+<h2>Section 4: Algorithmic Design</h2>
+<div id="optimizations-implemented-for-improving-the-overall-modular-design-of-the-application." class="section level4">
+<h4>Optimizations implemented for improving the overall modular design of the application.</h4>
+<ul>
+<li>Shiny components were split into separate UI &amp; server files to simplify the files.</li>
+<li>Various ‘non-shiny’ tasks like, data preparation, igraph building, etc have been grouped into separate source files (data.R, igraph.R) &amp; embedded as a link from the server file. This reduces the amount of ‘noise’ in the shiny server &amp; UI components.</li>
+<li>User profile is displayed for both the logged-in user &amp; for selected node. Since it is common information, that component has been identified as a common component to be ‘modularized’. A seperate Shiny ‘module’ has been created for the UserProfile function &amp; included via global.R.</li>
+<li>A separate shiny module has been created to display ‘Friend suggestions’ information to seggregate the functionality &amp; make it reusable.</li>
+</ul>
+</div>
+<div id="optimizations-implemented-for-improving-the-application-performance." class="section level4">
+<h4>Optimizations implemented for improving the application performance.</h4>
+<ul>
+<li>The initial data preparation activity is very intense &amp; time consuming. The data preparation steps &amp; components are common for every user. So instead of rebuilding those data structures every time, the application automatically save those objets (nodes, edges, igraph) as ‘.rds’ files &amp; just load them directly for subsequent uses.</li>
+<li>visNetwork graph building is an expensive operation. Instead of rebuilding the whole network everytime for minor changes, visNetwork proves a ‘proxy’ through which specific modifications on the network in an optimized manner.</li>
+<li>Few performance optimization options for visNetwork have been used for easier &amp; quicker rendering of the network graph. Those options are</li>
+<li>Disabling stabilization while rendering</li>
+<li>Disabling smooth edges while rendering</li>
+<li>Hiding the edges when the graph is being dragged.</li>
+<li>Execute <code>shiny load test</code> &amp; understand the application performance under higher load &amp; identify performance bottlenecks, if any.</li>
+</ul>
+</div>
+</div>
+<div id="section-5-user-evaluation" class="section level2">
+<h2>Section 5: User Evaluation</h2>
+</div>
+<div id="section-6-next-stepsfuture-work" class="section level2">
+<h2>Section 6: Next Steps/Future Work</h2>
+<ul>
+<li>While the <code>shortest path</code> is being displayed as text, it should be best done by visually highlighting the intermediate nodes &amp; the edges along the whole path.</li>
+<li>Currently the ‘Friend suggestions’ are purely based on the centrality measures. Another important factor to be considered in that computation should be the <code>distance</code> of the target node from the current node. The target nodes with lower distance counts should be prioritized to be included in the list.</li>
+<li>How to improve transformations on the centrality measures to reduce complexity for our users. For example, most people wouldn’t understand centrality values without further research and that might discourage usage. Since our purpose is to provide a convenient and popular platform for our users, we want to keep it as simple and easy to understand as possible.</li>
+<li>We also think that displaying the measure of closeness on a person’s profile provides very little information because it doesn’t tell us who is this person close to. Instead, we can improve our app by directly display the level of contact between two people (for example, by assigning a score). We can retrieve this information directly from the contact diaries, but it will require more steps on algorithmic design. For example, how do we want to display this information. We can either allow user to click on two profiles on the network graph to display their strength of connection, or we can display this information using a dropdown list on the sidebar.</li>
+</ul>
+</div>
+
+    </section>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss"><a class="subscribe-button icon-feed" href="/index.xml"></a></section>
+  
+  
+  <section class="copyright">&copy; 2019 Embrace Your Duality</section>
+  <section class="poweredby"><a href="http://thedarkroast.com/arabica">Arabica</a> theme by Sean Lunsford. Published with <a href="https://gohugo.io">Hugo</a>.</section>
+</footer>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shiny on Embrace Your Duality</title>
+    <link>/categories/shiny/</link>
+    <description>Recent content in shiny on Embrace Your Duality</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/shiny/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Final Project</title>
+      <link>/post/final-project/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/final-project/</guid>
+      <description>Web link to shiny App: [https://balavigneswaran-kuppusamy.shinyapps.io/network/]1. Introduction: Domain Problem CharacterizationA high school in Marseille, France has conducted an analysis on historical data studying the influence of different factors on academic performance. The study observes student behavior and rates each student’s peer connections on a scale of 1 to 10. Results show that receiving a high score on peer connections is highly correlated with not only academic excellence of the student while in school, but also superior development after graduation.</description>
+    </item>
+    
+  </channel>
+</rss>

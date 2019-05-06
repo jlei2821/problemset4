@@ -1,19 +1,14 @@
 ---
-title: Problem Set 2
-author: Jiamin Lei
+title: "Problem Set 2 (Visual Basics II)"
+author: "Jiamin Lei"
 date: '2019-04-29'
 slug: problem-set-2
-categories:
-  - rmarkdown
 tags: []
+categories: rmarkdown
 ---
-## Instructions
-
-In addition to running the code, you will need to do two things: either write in complete sentences a response or write R code to fill in a chunk.
-
-- "xxxxx" = Write, in complete English sentences, your response. 1-2 sentences is sufficient.
-
-- "**Plot**" = Write R code in the chunk corresponding to the instructions.
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 # Analyzing CMPD Traffic Stops
 
@@ -31,17 +26,20 @@ library(tidyverse)
 library(scales)
 
 library(ggspatial) 
+library(readr)
+library(knitr)
 
 
-df <- read_csv("./data/Officer_Traffic_Stops.csv")
+df <- readr::read_csv("./data/Officer_Traffic_Stops.csv")
 ```
 
-## Demographics of drivers (1 point)
+## Demographics of drivers 
 
 First, look at the data using the `glimpse()` function from `dplyr`
 
-```{r glimpse}
-glimpse(df)
+```{r glimpse, warning=FALSE, message=FALSE}
+library(dplyr)
+dplyr::glimpse(df)
 ```
 
 Notice the different variable types: character (chr), num (numeric), and datetime (POSIXct).
@@ -92,7 +90,7 @@ From the plots above, do you think the age of the driver is a significant factor
 
 Yes, the general age of drivers who identify with having search conducted tend to be a little younger. This makes sense because usually younger drivers may be considered more prone to risks. 
 
-## Date of stop (1 point)
+## Date of stop
 
 Let's plot the number of stops by time. 
 
@@ -190,11 +188,11 @@ What are three observations you can make about the number of police stops by div
 
 Next, this doesn't help tell us where these areas are. For that, let's use a shape file to create a chloropleth of stops by division.
 
-## Geography (1 point)
+## Geography 
 
 For this example, we'll create a cholorpleth for the number of police stops by police division.
 
-To do this, we need to use the `sf` package. (For help along the way, see [this tutorial](http://strimas.com/r/tidy-sf/) on `sf` package.)
+To do this, we need to use the `sf` package[using tutorial](http://strimas.com/r/tidy-sf/) on `sf` package.
 
 ```{r load-sf}
 #install.packages("sf")
@@ -249,7 +247,7 @@ Do you notice any difference between the two maps?
 
 Yes, the coordinate lines are more slanted which resemble the actual physical positions of the divisions 
 
-## Advanced Plot: (0.5 point)
+## Advanced Plot:
 
 Now, let's create a chloropleth. Below is the code to create an advanced plot.
 
@@ -309,7 +307,7 @@ ggsave(cmpd_chloropleth, filename = "cmpd_chloropleth.png",
 ```
 
 
-## Choosing a ggplot extensions  (1 point)
+## Choosing a ggplot extensions 
 
 Go to [ggextensions website](https://www.ggplot2-exts.org/). Then click Galleries to explore the different ggplot extensions. Scroll through and see if any catch your eye.
 
