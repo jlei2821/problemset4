@@ -12,7 +12,10 @@ tags: []
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###**Web link to shiny App:** [https://balavigneswaran-kuppusamy.shinyapps.io/network/]
+**Web link to shiny App:** [https://balavigneswaran-kuppusamy.shinyapps.io/network/]
+<br/>
+<br/>
+**Visit Github Repository:** [https://github.com/jlei2821/network_visual_design]
 
 ## 1. Introduction: Domain Problem Characterization
 
