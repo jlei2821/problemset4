@@ -54,26 +54,6 @@
   </url>
   
   <url>
-    <loc>/post/public/assets/bigfoot/license/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/public/assets/bigfoot/readme/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/public/assets/bigfoot/changelog/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/public/assets/bigfoot/readme-dev/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
     <priority>0</priority>
   </url>

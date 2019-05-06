@@ -32,46 +32,5 @@ head(gapminder)## # A tibble: 6 x 6## country continent year lifeExp pop gdpPe
 Analyzing CMPD Traffic StopsFor this problem set, we’ll examine a data set of stops by the Charlotte-Mecklenburg Police Department (CMPD).</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>/post/public/assets/bigfoot/license/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/public/assets/bigfoot/license/</guid>
-      <description>The MIT License (MIT)
-Copyright &amp;copy; 2013-2014 Chris Sauve
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/post/public/assets/bigfoot/readme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/public/assets/bigfoot/readme/</guid>
-      <description>bigfoot.js by Chris Sauve
-Bigfoot is a jQuery plugin that creates exceptional footnotes. Simply include the code on your pages and footnotes will be detected automatically and improved in the following ways:
- Links to footnotes will be replaced with clickable/ tappable buttons, making them substantially easier to hit.
- Footnote content will appear in a popover directly beside the footnote button when it is clicked/ tapped, which cuts out the annoying bouncing around the page that footnotes typically result in.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/post/public/assets/bigfoot/changelog/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/public/assets/bigfoot/changelog/</guid>
-      <description>2.0.0  Removed the positionNextToBlock option that allowed you to set where the popover would be appended to. Since the popovers now use absolute positioning, the popover element will always be appended to the .footnote-container element that also holds the button. Removed appendPopoversTo property for the same reasons. Added the maxWidthRelativeTo option. Because the popovers now use absolute positioning relative to the container of the footnote button, max-width declarations with percentages will not yield the result they used to (when popovers could be appended to any element).</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/post/public/assets/bigfoot/readme-dev/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/public/assets/bigfoot/readme-dev/</guid>
-      <description>Updates to existing styles should be made in src/scss/button.scss and src/scss/popover.scss. New styles should be created as BEM-style variants on the existing button and popover styles. You will also have to update rules in Gruntfile.js in order to create the required dist files.</description>
-    </item>
-    
   </channel>
 </rss>
