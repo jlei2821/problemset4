@@ -1,1 +1,1 @@
-# Create website using Hugo and Deploy using Netlify
+# Create website using Hugo and deploy using Netlify
