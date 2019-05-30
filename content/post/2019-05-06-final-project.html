@@ -46,45 +46,45 @@ categories:
 <ul>
 <li><strong>Random User API</strong> - provides user profile information like name, gender, ssn, profile pictures, etc over open web API with configurable parameters. The response from the API is in JSON format.</li>
 </ul>
-<pre><code>##   gender                  email          phone           cell nat
-## 1 female irene.hale@example.com (157)-210-8070 (328)-786-3048  US
-## 2 female  krin.reid@example.com (438)-050-4221 (492)-371-4200  US
-##   name.title name.first name.last   location.street  location.city
-## 1        mrs      irene      hale 5145 avondale ave corpus christi
-## 2         ms       krin      reid      2194 plum st    new orleans
+<pre><code>##   gender                    email          phone           cell nat
+## 1 female   anne.perry@example.com (646)-299-1732 (588)-198-8128  US
+## 2 female wanda.weaver@example.com (976)-462-3293 (467)-139-4783  US
+##   name.title name.first name.last         location.street location.city
+## 1       miss       anne     perry 8985 stevens creek blvd         tempe
+## 2        mrs      wanda    weaver       4162 valwood pkwy          cary
 ##   location.state location.postcode location.coordinates.latitude
-## 1        indiana             44444                       85.0729
-## 2          texas             68348                      -77.0541
+## 1         kansas             64314                       11.1931
+## 2           utah             25098                       37.4343
 ##   location.coordinates.longitude location.timezone.offset
-## 1                       150.3480                    +5:45
-## 2                       100.7382                    +4:00
-##      location.timezone.description                           login.uuid
-## 1                        Kathmandu 65ab8034-6eb0-4516-b97f-e029839c311c
-## 2 Abu Dhabi, Muscat, Baku, Tbilisi 064ccea5-07df-403a-b677-51a8bda399da
-##   login.username login.password login.salt
-## 1 yellowtiger126         jetski   5RbueApI
-## 2  heavyzebra996          litle   b2eMMjCM
-##                          login.md5
-## 1 0593093f9c3b4f618f839d15088ed5a1
-## 2 41fdf96ad547590ef442385cfa11d103
+## 1                        74.0493                    +3:00
+## 2                       -48.2522                    +2:00
+##             location.timezone.description
+## 1 Baghdad, Riyadh, Moscow, St. Petersburg
+## 2               Kaliningrad, South Africa
+##                             login.uuid      login.username login.password
+## 1 0b18ece5-9fd9-4f8d-b0d1-87746a7a4fe2 beautifulleopard545      southpark
+## 2 38ed3ecc-24e3-4090-8af6-aa9ff686d2d2         browncat487         series
+##   login.salt                        login.md5
+## 1   81L8HZRc ceb6cf89aec1412f66d83e74f0b049cf
+## 2   dMdHBpga 3d0676de01e4fac28d19c8dc7bb83c1d
 ##                                 login.sha1
-## 1 f833f4ff06892a52624a42a7afd0695cdc9157e3
-## 2 25d739e3f52e37887b83c100b22c2373a79fea4a
+## 1 59c7f7013be1161c4285af984ef716dd003bde58
+## 2 aef1899b9270af1b99a269ccfa8fa07ce841a997
 ##                                                       login.sha256
-## 1 71be0bae8baad494536f0083aff97762663bf2cb404cf5162fe663a709fd4118
-## 2 c2afc5d687e28e50a03fdfa420a59283844aa058f3dce3681f824ea9eb0c3fd9
+## 1 21079cfbf87e6a220308cf3a94c80c82f4f6bf503aa11007c15f0496f432adb5
+## 2 6644c5b415fef6f5e5c6942ac4ef29e966bd8463d518cb0d2b01fc6423188876
 ##               dob.date dob.age      registered.date registered.age id.name
-## 1 1953-10-31T08:52:34Z      65 2011-07-29T21:38:13Z              7     SSN
-## 2 1949-06-18T05:37:39Z      69 2016-02-01T10:23:18Z              3     SSN
+## 1 1969-01-23T08:23:43Z      50 2006-11-01T17:55:35Z             12     SSN
+## 2 1987-02-28T20:53:06Z      32 2012-08-15T00:58:26Z              6     SSN
 ##      id.value                                    picture.large
-## 1 901-69-4443 https://randomuser.me/api/portraits/women/52.jpg
-## 2 585-93-4824 https://randomuser.me/api/portraits/women/63.jpg
+## 1 206-08-6946 https://randomuser.me/api/portraits/women/40.jpg
+## 2 866-33-0680 https://randomuser.me/api/portraits/women/27.jpg
 ##                                         picture.medium
-## 1 https://randomuser.me/api/portraits/med/women/52.jpg
-## 2 https://randomuser.me/api/portraits/med/women/63.jpg
+## 1 https://randomuser.me/api/portraits/med/women/40.jpg
+## 2 https://randomuser.me/api/portraits/med/women/27.jpg
 ##                                        picture.thumbnail
-## 1 https://randomuser.me/api/portraits/thumb/women/52.jpg
-## 2 https://randomuser.me/api/portraits/thumb/women/63.jpg</code></pre>
+## 1 https://randomuser.me/api/portraits/thumb/women/40.jpg
+## 2 https://randomuser.me/api/portraits/thumb/women/27.jpg</code></pre>
 </div>
 <div id="data-preparation-steps-data-type-abstraction" class="section level4">
 <h4>Data Preparation Steps / Data Type Abstraction</h4>
@@ -266,11 +266,16 @@ Measures number of times a node lies on the shortest path between other nodes. H
 <li>At the end of the testing period, students would be surveyed to provide their opinion of the tool regarding ease of use, availability of information needed for networking activities, intuitiveness of the tool, etc.</li>
 <li>Measurements would be done to compare the increase in networking count for students who exclusively used this tool vs the alternate tool.</li>
 <li>Students would be surveyed regarding their understanding of the overall school network &amp; key players in the network &amp; be compared with a survey from test subjects of the alternate tool.</li>
-<li><p>Quantitative data on the increase in the network strength for the test subjects &amp; their qualitative knowledge on the overall network would highlight the effectiveness of this tool vs the alternate option. ## Section 6: Next Steps/Future Work</p></li>
+<li>Quantitative data on the increase in the network strength for the test subjects &amp; their qualitative knowledge on the overall network would highlight the effectiveness of this tool vs the alternate option.</li>
+</ul>
+</div>
+</div>
+<div id="section-6-next-stepsfuture-work" class="section level2">
+<h2>Section 6: Next Steps/Future Work</h2>
+<ul>
 <li>While the <code>shortest path</code> is being displayed as text, it should be best done by visually highlighting the intermediate nodes &amp; the edges along the whole path.</li>
 <li>Currently the ‘Friend suggestions’ are purely based on the centrality measures. Another important factor to be considered in that computation should be the <code>distance</code> of the target node from the current node. The target nodes with lower distance counts should be prioritized to be included in the list.</li>
 <li>How to improve transformations on the centrality measures to reduce complexity for our users. For example, most people wouldn’t understand centrality values without further research and that might discourage usage. Since our purpose is to provide a convenient and popular platform for our users, we want to keep it as simple and easy to understand as possible.</li>
-<li><p>We also think that displaying the measure of closeness on a person’s profile provides very little information because it doesn’t tell us who is this person close to. Instead, we can improve our app by directly display the level of contact between two people (for example, by assigning a score). We can retrieve this information directly from the contact diaries, but it will require more steps on algorithmic design. For example, how do we want to display this information. We can either allow user to click on two profiles on the network graph to display their strength of connection, or we can display this information using a dropdown list on the sidebar.</p></li>
+<li>We also think that displaying the measure of closeness on a person’s profile provides very little information because it doesn’t tell us who is this person close to. Instead, we can improve our app by directly display the level of contact between two people (for example, by assigning a score). We can retrieve this information directly from the contact diaries, but it will require more steps on algorithmic design. For example, how do we want to display this information. We can either allow user to click on two profiles on the network graph to display their strength of connection, or we can display this information using a dropdown list on the sidebar.</li>
 </ul>
-</div>
 </div>

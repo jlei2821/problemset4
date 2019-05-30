@@ -156,6 +156,7 @@ Since the network graph can be huge, some edges between nodes might be obscured 
 - Measurements would be done to compare the increase in networking count for students who exclusively used this tool vs the alternate tool.
 - Students would be surveyed regarding their understanding of the overall school network & key players in the network & be compared with a survey from test subjects of the alternate tool.
 - Quantitative data on the increase in the network strength for the test subjects & their qualitative knowledge on the overall network would highlight the effectiveness of this tool vs the alternate option.
+
 ## Section 6: Next Steps/Future Work
 
 - While the `shortest path` is being displayed as text, it should be best done by visually highlighting the intermediate nodes & the edges along the whole path.
