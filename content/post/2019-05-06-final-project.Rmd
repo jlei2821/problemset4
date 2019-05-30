@@ -1,16 +1,18 @@
 ---
-title: Final Project
-author: Balavigneswaran Kuppusamy, Minglan Ye, Jiamin Lei
+title: "Final Project"
+author: "Balavigneswaran Kuppusamy, Minglan Ye, Jiamin Lei"
 date: '2019-05-06'
 slug: final-project
 categories:
-  - shiny
-  - rmarkdown
-tags: []
+- shiny
+- rmarkdown
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
+
+![](/post/2019-05-06-final-project_files/social_media.jpg)
 
 **Web link to shiny App:** [https://balavigneswaran-kuppusamy.shinyapps.io/network/]
 <br/>

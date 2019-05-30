@@ -1,17 +1,20 @@
 ---
-title: Final Project
-author: Balavigneswaran Kuppusamy, Minglan Ye, Jiamin Lei
+title: "Final Project"
+author: "Balavigneswaran Kuppusamy, Minglan Ye, Jiamin Lei"
 date: '2019-05-06'
 slug: final-project
 categories:
-  - shiny
-  - rmarkdown
-tags: []
+- shiny
+- rmarkdown
 ---
 
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
+<div class="figure">
+<img src="/post/2019-05-06-final-project_files/social_media.jpg" />
+
+</div>
 <p><strong>Web link to shiny App:</strong> [<a href="https://balavigneswaran-kuppusamy.shinyapps.io/network/" class="uri">https://balavigneswaran-kuppusamy.shinyapps.io/network/</a>] <br/> <br/> <strong>Visit Github Repository:</strong> [<a href="https://github.com/jlei2821/network_visual_design" class="uri">https://github.com/jlei2821/network_visual_design</a>]</p>
 <div id="introduction-domain-problem-characterization" class="section level2">
 <h2>1. Introduction: Domain Problem Characterization</h2>
@@ -43,45 +46,45 @@ tags: []
 <ul>
 <li><strong>Random User API</strong> - provides user profile information like name, gender, ssn, profile pictures, etc over open web API with configurable parameters. The response from the API is in JSON format.</li>
 </ul>
-<pre><code>##   gender                       email          phone           cell nat
-## 1   male jackson.alvarez@example.com (638)-306-8524 (576)-553-8987  US
-## 2 female   margie.duncan@example.com (898)-203-5800 (665)-120-1904  US
-##   name.title name.first name.last    location.street location.city
-## 1         mr    jackson   alvarez 6268 westheimer rd        boston
-## 2       miss     margie    duncan  1763 white oak dr       coppell
+<pre><code>##   gender                        email          phone           cell nat
+## 1 female beverley.wallace@example.com (926)-893-7900 (301)-785-5806  US
+## 2 female      krin.howard@example.com (390)-557-1239 (090)-455-0618  US
+##   name.title name.first name.last       location.street    location.city
+## 1       miss   beverley   wallace       6797 w pecan st north charleston
+## 2       miss       krin    howard 2609 wheeler ridge dr      simi valley
 ##   location.state location.postcode location.coordinates.latitude
-## 1      tennessee             55685                      -21.8989
-## 2     new mexico             15408                      -46.0638
+## 1      wisconsin             63575                       47.6456
+## 2       arkansas             19014                       87.9598
 ##   location.coordinates.longitude location.timezone.offset
-## 1                       -70.2756                    +6:00
-## 2                       -19.5795                    +9:00
-##           location.timezone.description
-## 1                Almaty, Dhaka, Colombo
-## 2 Tokyo, Seoul, Osaka, Sapporo, Yakutsk
-##                             login.uuid     login.username login.password
-## 1 70caf1d8-3480-4636-9140-e277a5d60ad9       crazybear902         bbking
-## 2 8c9985ee-eb21-49ce-843c-efa35e2f390e orangebutterfly870           nike
+## 1                        47.3673                   +10:00
+## 2                      -156.2373                    +3:30
+##          location.timezone.description
+## 1 Eastern Australia, Guam, Vladivostok
+## 2                               Tehran
+##                             login.uuid login.username login.password
+## 1 1e2fae9f-9520-4ee7-b2fe-98b9ee3acf5c   tinymouse578           yeah
+## 2 0401cd99-d19d-426d-9a8c-57c86294fd11   tinysnake651         anders
 ##   login.salt                        login.md5
-## 1   osHdAlx1 eaf4f3296c4fef204004d1dacdcd4b44
-## 2   3o0DFhpb cde8a7be80fec18c9b32a2816036c9e7
+## 1   xlb56B8j 40ba0455a6e234076546fcaecf4dcc52
+## 2   C4YZD5IO 90bf2d40c340af5a602ad6ae1f001784
 ##                                 login.sha1
-## 1 d682ed588fc7e8cec1835ad8204d078744aa6d12
-## 2 8aadc347a0cfea8101af967009fd4825c00d9824
+## 1 5c768ef1c508fbbb332c5ffd6d2695b124650897
+## 2 2c8e0ec14dd801dbee744e75c9d423602ee98b2c
 ##                                                       login.sha256
-## 1 f545d67719f26cbf699e55980680d447a5d8aeaeee6c6ac0eccad1d331e61a83
-## 2 b171a4d357136fdf401278c29a7a2555fa0a346d9b82890c070e79038e945f91
+## 1 ba96849c288e1ca03cef74d76d4470a7dfe8a2bf0d3285456e6a595330dd0e7b
+## 2 cbd735c419fbc96d08e7ac8b5774c2a97e60afa9472f1e2034b5569ed4a01d6f
 ##               dob.date dob.age      registered.date registered.age id.name
-## 1 1952-05-26T21:20:43Z      66 2009-09-07T21:04:53Z              9     SSN
-## 2 1984-09-27T14:39:40Z      34 2016-04-20T15:28:22Z              3     SSN
+## 1 1983-03-19T13:03:12Z      36 2011-12-19T19:59:52Z              7     SSN
+## 2 1971-02-26T19:28:22Z      48 2006-03-19T09:16:41Z             13     SSN
 ##      id.value                                    picture.large
-## 1 105-78-0328   https://randomuser.me/api/portraits/men/46.jpg
-## 2 399-08-1352 https://randomuser.me/api/portraits/women/42.jpg
+## 1 814-88-6573 https://randomuser.me/api/portraits/women/89.jpg
+## 2 069-11-3377 https://randomuser.me/api/portraits/women/94.jpg
 ##                                         picture.medium
-## 1   https://randomuser.me/api/portraits/med/men/46.jpg
-## 2 https://randomuser.me/api/portraits/med/women/42.jpg
+## 1 https://randomuser.me/api/portraits/med/women/89.jpg
+## 2 https://randomuser.me/api/portraits/med/women/94.jpg
 ##                                        picture.thumbnail
-## 1   https://randomuser.me/api/portraits/thumb/men/46.jpg
-## 2 https://randomuser.me/api/portraits/thumb/women/42.jpg</code></pre>
+## 1 https://randomuser.me/api/portraits/thumb/women/89.jpg
+## 2 https://randomuser.me/api/portraits/thumb/women/94.jpg</code></pre>
 </div>
 <div id="data-preparation-steps-data-type-abstraction" class="section level4">
 <h4>Data Preparation Steps / Data Type Abstraction</h4>
