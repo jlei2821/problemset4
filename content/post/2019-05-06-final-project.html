@@ -46,45 +46,45 @@ categories:
 <ul>
 <li><strong>Random User API</strong> - provides user profile information like name, gender, ssn, profile pictures, etc over open web API with configurable parameters. The response from the API is in JSON format.</li>
 </ul>
-<pre><code>##   gender                        email          phone           cell nat
-## 1 female beverley.wallace@example.com (926)-893-7900 (301)-785-5806  US
-## 2 female      krin.howard@example.com (390)-557-1239 (090)-455-0618  US
-##   name.title name.first name.last       location.street    location.city
-## 1       miss   beverley   wallace       6797 w pecan st north charleston
-## 2       miss       krin    howard 2609 wheeler ridge dr      simi valley
+<pre><code>##   gender                  email          phone           cell nat
+## 1 female irene.hale@example.com (157)-210-8070 (328)-786-3048  US
+## 2 female  krin.reid@example.com (438)-050-4221 (492)-371-4200  US
+##   name.title name.first name.last   location.street  location.city
+## 1        mrs      irene      hale 5145 avondale ave corpus christi
+## 2         ms       krin      reid      2194 plum st    new orleans
 ##   location.state location.postcode location.coordinates.latitude
-## 1      wisconsin             63575                       47.6456
-## 2       arkansas             19014                       87.9598
+## 1        indiana             44444                       85.0729
+## 2          texas             68348                      -77.0541
 ##   location.coordinates.longitude location.timezone.offset
-## 1                        47.3673                   +10:00
-## 2                      -156.2373                    +3:30
-##          location.timezone.description
-## 1 Eastern Australia, Guam, Vladivostok
-## 2                               Tehran
-##                             login.uuid login.username login.password
-## 1 1e2fae9f-9520-4ee7-b2fe-98b9ee3acf5c   tinymouse578           yeah
-## 2 0401cd99-d19d-426d-9a8c-57c86294fd11   tinysnake651         anders
-##   login.salt                        login.md5
-## 1   xlb56B8j 40ba0455a6e234076546fcaecf4dcc52
-## 2   C4YZD5IO 90bf2d40c340af5a602ad6ae1f001784
+## 1                       150.3480                    +5:45
+## 2                       100.7382                    +4:00
+##      location.timezone.description                           login.uuid
+## 1                        Kathmandu 65ab8034-6eb0-4516-b97f-e029839c311c
+## 2 Abu Dhabi, Muscat, Baku, Tbilisi 064ccea5-07df-403a-b677-51a8bda399da
+##   login.username login.password login.salt
+## 1 yellowtiger126         jetski   5RbueApI
+## 2  heavyzebra996          litle   b2eMMjCM
+##                          login.md5
+## 1 0593093f9c3b4f618f839d15088ed5a1
+## 2 41fdf96ad547590ef442385cfa11d103
 ##                                 login.sha1
-## 1 5c768ef1c508fbbb332c5ffd6d2695b124650897
-## 2 2c8e0ec14dd801dbee744e75c9d423602ee98b2c
+## 1 f833f4ff06892a52624a42a7afd0695cdc9157e3
+## 2 25d739e3f52e37887b83c100b22c2373a79fea4a
 ##                                                       login.sha256
-## 1 ba96849c288e1ca03cef74d76d4470a7dfe8a2bf0d3285456e6a595330dd0e7b
-## 2 cbd735c419fbc96d08e7ac8b5774c2a97e60afa9472f1e2034b5569ed4a01d6f
+## 1 71be0bae8baad494536f0083aff97762663bf2cb404cf5162fe663a709fd4118
+## 2 c2afc5d687e28e50a03fdfa420a59283844aa058f3dce3681f824ea9eb0c3fd9
 ##               dob.date dob.age      registered.date registered.age id.name
-## 1 1983-03-19T13:03:12Z      36 2011-12-19T19:59:52Z              7     SSN
-## 2 1971-02-26T19:28:22Z      48 2006-03-19T09:16:41Z             13     SSN
+## 1 1953-10-31T08:52:34Z      65 2011-07-29T21:38:13Z              7     SSN
+## 2 1949-06-18T05:37:39Z      69 2016-02-01T10:23:18Z              3     SSN
 ##      id.value                                    picture.large
-## 1 814-88-6573 https://randomuser.me/api/portraits/women/89.jpg
-## 2 069-11-3377 https://randomuser.me/api/portraits/women/94.jpg
+## 1 901-69-4443 https://randomuser.me/api/portraits/women/52.jpg
+## 2 585-93-4824 https://randomuser.me/api/portraits/women/63.jpg
 ##                                         picture.medium
-## 1 https://randomuser.me/api/portraits/med/women/89.jpg
-## 2 https://randomuser.me/api/portraits/med/women/94.jpg
+## 1 https://randomuser.me/api/portraits/med/women/52.jpg
+## 2 https://randomuser.me/api/portraits/med/women/63.jpg
 ##                                        picture.thumbnail
-## 1 https://randomuser.me/api/portraits/thumb/women/89.jpg
-## 2 https://randomuser.me/api/portraits/thumb/women/94.jpg</code></pre>
+## 1 https://randomuser.me/api/portraits/thumb/women/52.jpg
+## 2 https://randomuser.me/api/portraits/thumb/women/63.jpg</code></pre>
 </div>
 <div id="data-preparation-steps-data-type-abstraction" class="section level4">
 <h4>Data Preparation Steps / Data Type Abstraction</h4>
@@ -249,13 +249,28 @@ Measures number of times a node lies on the shortest path between other nodes. H
 </div>
 <div id="section-5-user-evaluation" class="section level2">
 <h2>Section 5: User Evaluation</h2>
-</div>
-<div id="section-6-next-stepsfuture-work" class="section level2">
-<h2>Section 6: Next Steps/Future Work</h2>
+<div id="user-testing-process-planned" class="section level4">
+<h4>User testing process planned</h4>
 <ul>
+<li>One portion of the user base (Students) would be identified as test subjects for testing this tool &amp; another portion for testing the alternate tool (Facebook)</li>
+<li>Identified users would be presented with this networking tool &amp; be configured for their respective classes.</li>
+<li>Users would be asked to record all their network connections using this tool.</li>
+<li>Users would be encouraged to explore the network &amp; make connections with own classmates &amp; students across classes.</li>
+<li>Users would be asked to use only this tool exclusively for a month &amp; not any other social media.</li>
+<li>The second test set of users would be asked to use only the alternate tool (Facebook) exclusively for a month &amp; not any other social media.</li>
+</ul>
+</div>
+<div id="measuring-the-effectiveness-of-the-tool-compared-to-an-alternate-tool" class="section level4">
+<h4>Measuring the effectiveness of the tool compared to an alternate tool</h4>
+<ul>
+<li>At the end of the testing period, students would be surveyed to provide their opinion of the tool regarding ease of use, availability of information needed for networking activities, intuitiveness of the tool, etc.</li>
+<li>Measurements would be done to compare the increase in networking count for students who exclusively used this tool vs the alternate tool.</li>
+<li>Students would be surveyed regarding their understanding of the overall school network &amp; key players in the network &amp; be compared with a survey from test subjects of the alternate tool.</li>
+<li><p>Quantitative data on the increase in the network strength for the test subjects &amp; their qualitative knowledge on the overall network would highlight the effectiveness of this tool vs the alternate option. ## Section 6: Next Steps/Future Work</p></li>
 <li>While the <code>shortest path</code> is being displayed as text, it should be best done by visually highlighting the intermediate nodes &amp; the edges along the whole path.</li>
 <li>Currently the ‘Friend suggestions’ are purely based on the centrality measures. Another important factor to be considered in that computation should be the <code>distance</code> of the target node from the current node. The target nodes with lower distance counts should be prioritized to be included in the list.</li>
 <li>How to improve transformations on the centrality measures to reduce complexity for our users. For example, most people wouldn’t understand centrality values without further research and that might discourage usage. Since our purpose is to provide a convenient and popular platform for our users, we want to keep it as simple and easy to understand as possible.</li>
-<li>We also think that displaying the measure of closeness on a person’s profile provides very little information because it doesn’t tell us who is this person close to. Instead, we can improve our app by directly display the level of contact between two people (for example, by assigning a score). We can retrieve this information directly from the contact diaries, but it will require more steps on algorithmic design. For example, how do we want to display this information. We can either allow user to click on two profiles on the network graph to display their strength of connection, or we can display this information using a dropdown list on the sidebar.</li>
+<li><p>We also think that displaying the measure of closeness on a person’s profile provides very little information because it doesn’t tell us who is this person close to. Instead, we can improve our app by directly display the level of contact between two people (for example, by assigning a score). We can retrieve this information directly from the contact diaries, but it will require more steps on algorithmic design. For example, how do we want to display this information. We can either allow user to click on two profiles on the network graph to display their strength of connection, or we can display this information using a dropdown list on the sidebar.</p></li>
 </ul>
+</div>
 </div>
